@@ -1,15 +1,21 @@
 import React from 'react'
-import { ComponentMeta, ComponentStory } from '@storybook/react'
+import { StoryFn, Meta, StoryObj } from '@storybook/react'
 
 import Navigation from './Navigation'
 
-export default {
+const meta: Meta<typeof Navigation> = {
   title: 'Navigation',
   component: Navigation,
-} as ComponentMeta<typeof Navigation>
+}
 
-export const Default: ComponentStory<typeof Navigation> = () => (
-  <div className="flex flex-row h-screen w-full">
-    <Navigation />
-  </div>
-)
+export default meta
+
+type Story = StoryObj<typeof Navigation>
+
+export const Default: Story = {
+  render: () => (
+    <div className="flex flex-row h-screen w-full">
+      <Navigation />
+    </div>
+  ),
+}

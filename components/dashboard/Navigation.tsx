@@ -16,7 +16,7 @@ const links: NavLink[] = [
 
 const Navigation = () => {
   return (
-    <div className="flex flex-grow flex-col h-screen max-w-xs shadow-xl">
+    <div className="flex flex-grow flex-col h-screen max-w-xs shadow-xl bg-white">
       <ul className="list-none">
         {links.map(({ title, urlKey, icon }) => {
           const Icon = icon
