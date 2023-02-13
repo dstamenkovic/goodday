@@ -1,4 +1,4 @@
-# Testing Next 13 and Storybook 7
+# Testing Next 13
 
 ---
 
