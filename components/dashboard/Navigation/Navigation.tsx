@@ -16,14 +16,14 @@ const links: NavLink[] = [
 
 const Navigation = () => {
   return (
-    <div className="flex flex-grow flex-col h-screen max-w-xs shadow-xl bg-white">
+    <div className="flex h-screen max-w-fit flex-grow flex-col bg-white shadow-xl lg:max-w-xs">
       <ul className="list-none">
         {links.map(({ title, urlKey, icon }) => {
           const Icon = icon
           return (
             <li
               key={title}
-              className="border-b border-b-gray-200 text-lg p-3 hover:text-gray-500 hover:cursor-pointer"
+              className="border-b border-b-gray-200 py-3 px-6 text-lg hover:cursor-pointer hover:text-gray-500"
             >
               <Link href={`/${urlKey}`}>
                 <div className="flex items-center">

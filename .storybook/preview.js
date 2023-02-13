@@ -1,4 +1,5 @@
 import 'tailwindcss/tailwind.css'
+import '../app/globals.css'
 
 export const parameters = {
   actions: { argTypesRegex: '^on[A-Z].*' },
@@ -8,4 +9,7 @@ export const parameters = {
       date: /Date$/,
     },
   },
+  // docs: {
+  //   autodocs: true,
+  // },
 }
