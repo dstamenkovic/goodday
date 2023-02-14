@@ -1,3 +1,3 @@
-const Create = () => <h2>Edit</h2>
+const Create = () => <div className="mt-4 pl-2">Editor</div>
 
 export default Create
