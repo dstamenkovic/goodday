@@ -1,3 +1,2 @@
-const Editor = () => <>Editor</>
-
-export default Editor
+export { default } from './Editor'
+export * from './Editor'
