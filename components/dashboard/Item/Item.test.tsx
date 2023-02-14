@@ -8,5 +8,6 @@ describe('Item', () => {
     const item = { title: 'Title', id: 'someId1' }
     render(<Item item={item} />)
     expect(screen.getByText(item.title)).toBeInTheDocument()
+    expect(screen.getByTitle('Edit')).toBeInTheDocument()
   })
 })

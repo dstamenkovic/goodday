@@ -10,7 +10,7 @@ const DashboardItem = ({ item }: ItemProps) => {
   return (
     <div className="item">
       <h3 className="mb-6">{item.title}</h3>
-      <IoCreateOutline size={30} />
+      <IoCreateOutline size={30} title="Edit" />
     </div>
   )
 }
