@@ -1,6 +1,6 @@
 'use client'
 import { useState, useRef } from 'react'
-import { Editor, EditorState, RichUtils } from 'draft-js'
+import { Editor, EditorState } from 'draft-js'
 
 import Tooltip from './Tooltip'
 
@@ -41,7 +41,7 @@ const EditorComponent = () => {
     let tooltipLeft = selectionCenter - tooltipWidth / 2
     tooltipLeft = tooltipLeft < 1 ? 0 : tooltipLeft
 
-    const tooltipTop = top - height - 30
+    const tooltipTop = top - height - 35
 
     tooltip.style.left = `${tooltipLeft}px`
     tooltip.style.top = `${tooltipTop}px`

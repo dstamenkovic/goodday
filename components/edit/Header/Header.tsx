@@ -13,7 +13,7 @@ const Header = () => {
         name="Title"
         aria-label="Title"
         placeholder="Add title..."
-        className="text-2xl outline-none"
+        className="w-full text-3xl outline-none"
       />
     </div>
   )
