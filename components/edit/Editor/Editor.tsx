@@ -1,8 +1,16 @@
 'use client'
 import { useState, useRef } from 'react'
-import { Editor, EditorState } from 'draft-js'
+import { Editor, EditorState, RichUtils } from 'draft-js'
 
 import Tooltip from './Tooltip'
+
+type AllowedInlineStyles = 'BOLD' | 'ITALIC' | 'UNDERLINE' | 'STRIKETHROUGH'
+type AllowedBlockStyles = 'header-one' | 'header-two' | 'header-three'
+export type AllowedStyles = AllowedInlineStyles | AllowedBlockStyles
+
+const isBlockStyle = (style: AllowedStyles): style is AllowedBlockStyles => {
+  return ['header-one', 'header-two', 'header-three'].includes(style)
+}
 
 const EditorComponent = () => {
   const [editorState, setEditorState] = useState<EditorState>(() => EditorState.createEmpty())
@@ -47,9 +55,25 @@ const EditorComponent = () => {
     tooltip.style.top = `${tooltipTop}px`
   }
 
+  const applyStyles = (style: AllowedStyles): void => {
+    let newState = editorState
+
+    if (isBlockStyle(style)) {
+      newState = RichUtils.toggleBlockType(newState, style)
+    } else {
+      newState = RichUtils.toggleInlineStyle(newState, style)
+    }
+    setEditorState(newState)
+  }
+
   return (
     <>
-      <Tooltip showTooltip={showTooltip} tooltipRef={tooltipRef} />
+      <Tooltip
+        showTooltip={showTooltip}
+        tooltipRef={tooltipRef}
+        applyStyles={applyStyles}
+        setShowTooltip={setShowTooltip}
+      />
       <Editor editorState={editorState} onChange={onChange} />
     </>
   )
