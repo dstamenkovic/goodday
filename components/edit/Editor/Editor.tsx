@@ -1,6 +1,7 @@
 'use client'
 import { useState, useRef } from 'react'
 import { Editor, EditorState, RichUtils } from 'draft-js'
+import 'draft-js/dist/Draft.css'
 
 import Tooltip from './Tooltip'
 
@@ -74,7 +75,7 @@ const EditorComponent = () => {
         applyStyles={applyStyles}
         setShowTooltip={setShowTooltip}
       />
-      <Editor editorState={editorState} onChange={onChange} />
+      <Editor editorState={editorState} onChange={onChange} placeholder="What's on your mind?" />
     </>
   )
 }
