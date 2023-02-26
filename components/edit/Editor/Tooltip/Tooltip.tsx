@@ -1,23 +1,24 @@
-import {
-  BsTypeBold,
-  BsTypeItalic,
-  BsTypeUnderline,
-  BsTypeStrikethrough,
-  BsTypeH1,
-  BsTypeH2,
-  BsTypeH3,
-} from 'react-icons/bs'
+import { DraftBlockType, DraftInlineStyle } from 'draft-js'
 
-import { AllowedStyles } from '../Editor'
+import { blockStylesBtns, inlineStylesBtns, AllowedStyles } from './tooltipUtils'
 
 type TooltipProps = {
   tooltipRef: React.RefObject<HTMLDivElement>
   showTooltip: boolean
   setShowTooltip: React.Dispatch<React.SetStateAction<boolean>>
   applyStyles: (style: AllowedStyles) => void
+  currentStyle: DraftInlineStyle
+  currentBlockType: DraftBlockType
 }
 
-const Tooltip = ({ tooltipRef, showTooltip, applyStyles, setShowTooltip }: TooltipProps) => {
+const Tooltip = ({
+  tooltipRef,
+  showTooltip,
+  applyStyles,
+  setShowTooltip,
+  currentStyle,
+  currentBlockType,
+}: TooltipProps) => {
   const onClickHandler = (style: AllowedStyles) => {
     applyStyles(style)
     setShowTooltip(false)
@@ -30,55 +31,37 @@ const Tooltip = ({ tooltipRef, showTooltip, applyStyles, setShowTooltip }: Toolt
         showTooltip ? '!visible' : ''
       }`}
     >
-      <div
-        className="flex cursor-pointer border-r border-gray-200 p-2"
-        aria-label="Bold"
-        onClick={() => onClickHandler('BOLD')}
-      >
-        <BsTypeBold size={22} />
-      </div>
-      <div
-        className="flex cursor-pointer border-r border-gray-200 p-2"
-        aria-label="Italic"
-        onClick={() => onClickHandler('ITALIC')}
-      >
-        <BsTypeItalic size={22} />
-      </div>
-      <div
-        className="flex cursor-pointer border-r border-gray-200 p-2"
-        aria-label="Underline"
-        onClick={() => onClickHandler('UNDERLINE')}
-      >
-        <BsTypeUnderline size={22} />
-      </div>
-      <div
-        className="flex cursor-pointer border-r border-gray-200 p-2"
-        aria-label="Strikethrough"
-        onClick={() => onClickHandler('STRIKETHROUGH')}
-      >
-        <BsTypeStrikethrough size={22} />
-      </div>
-      <div
-        className="flex cursor-pointer border-r border-gray-200 p-2"
-        aria-label="Heading 1"
-        onClick={() => onClickHandler('header-one')}
-      >
-        <BsTypeH1 size={22} />
-      </div>
-      <div
-        className="flex cursor-pointer border-r border-gray-200 p-2"
-        aria-label="Heading 2"
-        onClick={() => onClickHandler('header-two')}
-      >
-        <BsTypeH2 size={22} />
-      </div>
-      <div
-        className="flex cursor-pointer p-2"
-        aria-label="Heading 3"
-        onClick={() => onClickHandler('header-three')}
-      >
-        <BsTypeH3 size={22} />
-      </div>
+      {inlineStylesBtns.map(btn => {
+        return (
+          <div
+            className="flex cursor-pointer border-r border-gray-200 p-2"
+            aria-label={btn.label}
+            onClick={() => onClickHandler(btn.name)}
+            key={btn.name}
+          >
+            {btn.icon({
+              size: 22,
+              className: `${currentStyle.has(btn.name) ? 'fill-blue-500' : ''}`,
+            })}
+          </div>
+        )
+      })}
+
+      {blockStylesBtns.map(btn => {
+        return (
+          <div
+            className={btn.styles}
+            aria-label={btn.label}
+            onClick={() => onClickHandler(btn.name)}
+            key={btn.name}
+          >
+            {btn.icon({
+              size: 22,
+              className: `${currentBlockType === btn.name ? 'fill-blue-500' : ''}`,
+            })}
+          </div>
+        )
+      })}
     </div>
   )
 }

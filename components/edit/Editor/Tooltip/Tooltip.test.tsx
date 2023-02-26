@@ -1,21 +1,32 @@
-import { render, screen, renderHook } from '@testing-library/react'
+import { render, screen } from '@testing-library/react'
+import { EditorState } from 'draft-js'
 import React from 'react'
 
 import Tooltip from './Tooltip'
+import { inlineStylesBtns, blockStylesBtns } from './tooltipUtils'
 
 describe('Tooltip', () => {
-  it('renders the tooltip', () => {
+  it('renders', () => {
     const tooltipRef = React.createRef<HTMLDivElement>()
-    render(<Tooltip tooltipRef={tooltipRef} showTooltip={true} />)
+    render(
+      <Tooltip
+        tooltipRef={tooltipRef}
+        showTooltip={true}
+        currentBlockType="header-two"
+        currentStyle={EditorState.createEmpty().getCurrentInlineStyle()}
+        setShowTooltip={() => {}}
+        applyStyles={() => {}}
+      />
+    )
 
     const { getByLabelText } = screen
 
-    expect(getByLabelText('Bold')).toBeTruthy()
-    expect(getByLabelText('Italic')).toBeTruthy()
-    expect(getByLabelText('Underline')).toBeTruthy()
-    expect(getByLabelText('Strikethrough')).toBeTruthy()
-    expect(getByLabelText('Heading 1')).toBeTruthy()
-    expect(getByLabelText('Heading 2')).toBeTruthy()
-    expect(getByLabelText('Heading 3')).toBeTruthy()
+    inlineStylesBtns.forEach(btn => {
+      expect(getByLabelText(btn.label)).toBeTruthy()
+    })
+
+    blockStylesBtns.forEach(btn => {
+      expect(getByLabelText(btn.label)).toBeTruthy()
+    })
   })
 })

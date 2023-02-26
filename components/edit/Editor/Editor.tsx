@@ -4,10 +4,7 @@ import { Editor, EditorState, RichUtils } from 'draft-js'
 import 'draft-js/dist/Draft.css'
 
 import Tooltip from './Tooltip'
-
-type AllowedInlineStyles = 'BOLD' | 'ITALIC' | 'UNDERLINE' | 'STRIKETHROUGH'
-type AllowedBlockStyles = 'header-one' | 'header-two' | 'header-three'
-export type AllowedStyles = AllowedInlineStyles | AllowedBlockStyles
+import { AllowedStyles, AllowedBlockStyles } from './Tooltip/tooltipUtils'
 
 const isBlockStyle = (style: AllowedStyles): style is AllowedBlockStyles => {
   return ['header-one', 'header-two', 'header-three'].includes(style)
@@ -74,6 +71,11 @@ const EditorComponent = () => {
         tooltipRef={tooltipRef}
         applyStyles={applyStyles}
         setShowTooltip={setShowTooltip}
+        currentStyle={editorState.getCurrentInlineStyle()}
+        currentBlockType={editorState
+          .getCurrentContent()
+          .getBlockForKey(editorState.getSelection().getStartKey())
+          .getType()}
       />
       <Editor editorState={editorState} onChange={onChange} placeholder="What's on your mind?" />
     </>
