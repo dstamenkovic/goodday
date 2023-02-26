@@ -1,5 +1,4 @@
 import { render, screen } from '@testing-library/react'
-import { EditorState } from 'draft-js'
 import React from 'react'
 
 import Tooltip from './Tooltip'
@@ -13,7 +12,7 @@ describe('Tooltip', () => {
         tooltipRef={tooltipRef}
         showTooltip={true}
         currentBlockType="header-two"
-        currentStyle={EditorState.createEmpty().getCurrentInlineStyle()}
+        currentStyle={[]}
         setShowTooltip={() => {}}
         applyStyles={() => {}}
       />

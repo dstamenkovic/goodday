@@ -1,13 +1,21 @@
 import { DraftBlockType, DraftInlineStyle } from 'draft-js'
 
-import { blockStylesBtns, inlineStylesBtns, AllowedStyles } from './tooltipUtils'
+import {
+  blockStylesBtns,
+  inlineStylesBtns,
+  AllowedStyles,
+  AllowedInlineStyles,
+  AllowedBlockStyles,
+} from './tooltipUtils'
 
 type TooltipProps = {
   tooltipRef: React.RefObject<HTMLDivElement>
   showTooltip: boolean
   setShowTooltip: React.Dispatch<React.SetStateAction<boolean>>
   applyStyles: (style: AllowedStyles) => void
-  currentStyle: DraftInlineStyle
+  currentStyle: AllowedInlineStyles[]
+  // currentStyle: DraftInlineStyle
+  // currentBlockType: AllowedBlockStyles | 'unstyled
   currentBlockType: DraftBlockType
 }
 
@@ -41,7 +49,7 @@ const Tooltip = ({
           >
             {btn.icon({
               size: 22,
-              className: `${currentStyle.has(btn.name) ? 'fill-blue-500' : ''}`,
+              className: `${currentStyle.includes(btn.name) ? 'fill-blue-500' : ''}`,
             })}
           </div>
         )

@@ -71,7 +71,7 @@ const EditorComponent = () => {
         tooltipRef={tooltipRef}
         applyStyles={applyStyles}
         setShowTooltip={setShowTooltip}
-        currentStyle={editorState.getCurrentInlineStyle()}
+        currentStyle={editorState.getCurrentInlineStyle().toJS()}
         currentBlockType={editorState
           .getCurrentContent()
           .getBlockForKey(editorState.getSelection().getStartKey())
