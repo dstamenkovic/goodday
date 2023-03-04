@@ -1,11 +1,9 @@
 import dynamic from 'next/dynamic'
 
-const Editor = dynamic(() => import('components/edit/Editor'), { ssr: false })
+const ClientSideWrapperEdit = dynamic(() => import('components/edit/ClientSideWrapperEdit'), {
+  ssr: false,
+})
 
-const Create = () => (
-  <div className="mt-4 pl-2">
-    <Editor />
-  </div>
-)
+const Create = () => <ClientSideWrapperEdit />
 
 export default Create

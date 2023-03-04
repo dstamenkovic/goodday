@@ -1,14 +1,9 @@
-import Stack from 'components/dashboard/Stack'
-
-const fakeItems = [
-  { id: '1rt', title: 'Item 1 with a longer title' },
-  { id: '2rt', title: 'Item 2' },
-]
+import DashboardClientSideContent from 'components/dashboard/ClientSideWrapperDash'
 
 const Dashboard = () => {
   return (
     <div className="flex-1 p-8">
-      <Stack items={fakeItems} />
+      <DashboardClientSideContent />
     </div>
   )
 }

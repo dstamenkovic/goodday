@@ -1,5 +1,5 @@
 'use client'
-import { useState, useRef } from 'react'
+import { useState, useRef, useEffect } from 'react'
 import { Editor, EditorState, RichUtils } from 'draft-js'
 import 'draft-js/dist/Draft.css'
 
@@ -15,6 +15,14 @@ const EditorComponent = () => {
   const [showTooltip, setShowTooltip] = useState<boolean>(false)
   editorState.getSelection()
   const tooltipRef = useRef<HTMLDivElement>(null)
+
+  // trigger save when the user stops interacting with the editor
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      console.log('save')
+    }, 1500)
+    return () => clearTimeout(timeout)
+  }, [editorState])
 
   const onChange = (editorState: EditorState): void => {
     const selection = editorState.getSelection()
