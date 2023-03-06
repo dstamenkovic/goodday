@@ -1,4 +1,5 @@
 import { IoCreateOutline } from 'react-icons/io5'
+import Link from 'next/link'
 
 export type ItemType = {
   id: string
@@ -8,10 +9,10 @@ type ItemProps = { item: ItemType }
 
 const DashboardItem = ({ item }: ItemProps) => {
   return (
-    <div className="item">
+    <Link href={`/edit?id=${item.id}`} className="item">
       <h3 className="mb-6">{item.title}</h3>
       <IoCreateOutline size={30} title="Edit" />
-    </div>
+    </Link>
   )
 }
 

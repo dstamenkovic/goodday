@@ -1,30 +1,57 @@
 'use client'
 import { useState, useRef, useEffect } from 'react'
-import { Editor, EditorState, RichUtils } from 'draft-js'
+import {
+  Editor,
+  EditorState,
+  RichUtils,
+  RawDraftContentState,
+  convertFromRaw,
+  convertToRaw,
+} from 'draft-js'
 import 'draft-js/dist/Draft.css'
 
 import Tooltip from './Tooltip'
 import { AllowedStyles, AllowedBlockStyles } from './Tooltip/tooltipUtils'
+import { ItemType } from 'storage'
 
 const isBlockStyle = (style: AllowedStyles): style is AllowedBlockStyles => {
   return ['header-one', 'header-two', 'header-three'].includes(style)
 }
 
-const EditorComponent = () => {
+type Props = {
+  handleSave: ({ editorContent }: { editorContent: RawDraftContentState }) => Promise<void>
+  defaultEditorContent: RawDraftContentState | null
+}
+
+const EditorComponent = ({ handleSave, defaultEditorContent }: Props) => {
   const [editorState, setEditorState] = useState<EditorState>(() => EditorState.createEmpty())
   const [showTooltip, setShowTooltip] = useState<boolean>(false)
+  const [staredEditing, setStaredEditing] = useState<boolean>(false)
   editorState.getSelection()
   const tooltipRef = useRef<HTMLDivElement>(null)
 
+  // set editor state on mount
+  useEffect(() => {
+    if (defaultEditorContent?.blocks && defaultEditorContent.blocks.length > 0) {
+      setEditorState(EditorState.createWithContent(convertFromRaw(defaultEditorContent)))
+    }
+  }, [defaultEditorContent])
+
   // trigger save when the user stops interacting with the editor
   useEffect(() => {
+    if (!staredEditing) return
+
     const timeout = setTimeout(() => {
-      console.log('save')
-    }, 1500)
+      console.log('editor saving...')
+      handleSave({ editorContent: convertToRaw(editorState.getCurrentContent()) })
+    }, 1000)
+
     return () => clearTimeout(timeout)
-  }, [editorState])
+  }, [editorState, handleSave, staredEditing])
 
   const onChange = (editorState: EditorState): void => {
+    if (!staredEditing) setStaredEditing(true)
+
     const selection = editorState.getSelection()
 
     const textIsSelected = selection.getAnchorOffset() !== selection.getFocusOffset()
