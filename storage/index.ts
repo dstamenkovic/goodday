@@ -1,10 +1,10 @@
-import { EditorState, ContentState } from 'draft-js'
+import { EditorState, convertToRaw, RawDraftContentState } from 'draft-js'
 import localforage from 'localforage'
 
-interface ItemType {
+export interface ItemType {
   id: string
   title: string
-  editorState: EditorState
+  editorContent: RawDraftContentState
 }
 
 interface State {
@@ -15,24 +15,24 @@ let store: LocalForage = localforage.createInstance({
   name: 'doamm',
 })
 
-export const initialState: State = {
-  items: [
-    {
-      id: '1',
-      title: 'Item 1',
-      editorState: EditorState.createWithContent(
-        ContentState.createFromText('Here is just one example')
-      ),
-    },
-  ],
-}
+// export const initialState: State = {
+//   items: [
+//     {
+//       id: '1',
+//       title: 'Item 1',
+//       editorState: EditorState.createWithContent(
+//         ContentState.createFromText('Here is just one example')
+//       ),
+//     },
+//   ],
+// }
 
-export const initStorage = async (): Promise<void> => {
-  const items: State['items'] | null = await store.getItem('items')
-  if (!items) {
-    store.setItem('items', JSON.stringify(initialState.items))
-  }
-}
+// export const initStorage = async (): Promise<void> => {
+//   const items: State['items'] | null = await store.getItem('items')
+//   if (!items) {
+//     store.setItem('items', JSON.stringify(initialState.items))
+//   }
+// }
 
 export const getItems = async (): Promise<Array<ItemType>> => {
   const getItems: string | null = await store.getItem('items')
@@ -49,16 +49,29 @@ export const getItem = async (id: string): Promise<ItemType | null> => {
   return item || null
 }
 
-export const addItem = async (item: ItemType): Promise<void> => {
+export const createItem = async (): Promise<{ id: string }> => {
   const items: ItemType[] = await getItems()
-  items.push(item)
-  store.setItem('items', JSON.stringify(items))
+
+  const id = `${Math.random().toString(36).substring(7)}-${Date.now()}-${Math.random()
+    .toString(36)
+    .substring(5)}`
+
+  const newItem: ItemType = {
+    id,
+    title: '',
+    editorContent: convertToRaw(EditorState.createEmpty().getCurrentContent()),
+  }
+
+  items.push(newItem)
+  await store.setItem('items', JSON.stringify(items))
+
+  return { id }
 }
 
-export const updateItem = async (updatedItem: ItemType): Promise<void> => {
+export const updateItem = async (id: string, updatedProps: Partial<ItemType>): Promise<void> => {
   const items: ItemType[] = await getItems()
-  const index = items.findIndex(item => item.id === updatedItem.id)
-  items[index] = updatedItem
+  const index = items.findIndex(item => item.id === id)
+  items[index] = { ...items[index], ...updatedProps }
   store.setItem('items', JSON.stringify(items))
 }
 

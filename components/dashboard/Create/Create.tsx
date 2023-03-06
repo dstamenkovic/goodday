@@ -1,11 +1,14 @@
 import { IoAddOutline } from 'react-icons/io5'
-import Link from 'next/link'
 
-const Create = () => {
+type Props = {
+  onClickHandler: () => Promise<void>
+}
+
+const Create = ({ onClickHandler }: Props) => {
   return (
-    <Link href="/edit" className="item justify-center">
+    <div className="item justify-center" onClick={onClickHandler}>
       <IoAddOutline size={45} title="Create" />
-    </Link>
+    </div>
   )
 }
 
