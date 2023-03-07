@@ -10,7 +10,7 @@ type ItemProps = { item: ItemType }
 const DashboardItem = ({ item }: ItemProps) => {
   return (
     <Link href={`/edit?id=${item.id}`} className="item">
-      <h3 className="mb-6">{item.title}</h3>
+      <h3 className="mb-6">{item.title || 'No title'}</h3>
       <IoCreateOutline size={30} title="Edit" />
     </Link>
   )

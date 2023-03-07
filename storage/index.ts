@@ -7,32 +7,9 @@ export interface ItemType {
   editorContent: RawDraftContentState
 }
 
-interface State {
-  items: ItemType[]
-}
-
 let store: LocalForage = localforage.createInstance({
   name: 'doamm',
 })
-
-// export const initialState: State = {
-//   items: [
-//     {
-//       id: '1',
-//       title: 'Item 1',
-//       editorState: EditorState.createWithContent(
-//         ContentState.createFromText('Here is just one example')
-//       ),
-//     },
-//   ],
-// }
-
-// export const initStorage = async (): Promise<void> => {
-//   const items: State['items'] | null = await store.getItem('items')
-//   if (!items) {
-//     store.setItem('items', JSON.stringify(initialState.items))
-//   }
-// }
 
 export const getItems = async (): Promise<Array<ItemType>> => {
   const getItems: string | null = await store.getItem('items')
@@ -81,9 +58,3 @@ export const deleteItem = async (id: string): Promise<void> => {
   items.splice(index, 1)
   store.setItem('items', JSON.stringify(items))
 }
-
-// type ErrorMsg = string | null
-
-// export const isInvalidItem = (item: ItemType): ErrorMsg => {
-//   //
-// }
