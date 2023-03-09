@@ -1,6 +1,8 @@
 import Item from './Item'
 import { Meta, StoryObj } from '@storybook/react'
 
+import { generateItems } from 'utils'
+
 const meta: Meta<typeof Item> = {
   title: 'Dashboard/Item',
   component: Item,
@@ -12,6 +14,6 @@ type Story = StoryObj<typeof Item>
 
 export const Default: Story = {
   args: {
-    item: { id: '1rt', title: 'Item 1 title long' },
+    item: generateItems(1)[0],
   },
 }

@@ -3,13 +3,7 @@ import '@testing-library/jest-dom'
 
 import Stack from './Stack'
 
-const generateItems = (amount: number): Array<{ id: string; title: string }> => {
-  const arr = Array.from(Array(amount))
-  return arr.map((number, i) => ({
-    id: `${i}rt`,
-    title: `Title ${i + 1}`,
-  }))
-}
+import { generateItems } from 'utils'
 
 describe('Stack', () => {
   it('renders correctly', () => {

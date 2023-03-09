@@ -1,11 +1,7 @@
 import { EditorState, convertToRaw, RawDraftContentState } from 'draft-js'
 import localforage from 'localforage'
 
-export interface ItemType {
-  id: string
-  title: string
-  editorContent: RawDraftContentState
-}
+import { ItemType } from 'types/Item'
 
 let store: LocalForage = localforage.createInstance({
   name: 'doamm',

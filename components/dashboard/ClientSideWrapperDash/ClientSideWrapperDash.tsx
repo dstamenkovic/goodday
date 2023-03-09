@@ -5,7 +5,7 @@ import { useRouter } from 'next/navigation'
 
 import { getItems, createItem } from 'storage'
 import Stack from '../Stack'
-import { ItemType } from '../Item'
+import { ItemType } from 'types'
 
 export default function ClientSideWrapperDash() {
   const [items, setItems] = useState<ItemType[]>([])

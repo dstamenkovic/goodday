@@ -12,7 +12,6 @@ import 'draft-js/dist/Draft.css'
 
 import Tooltip from './Tooltip'
 import { AllowedStyles, AllowedBlockStyles } from './Tooltip/tooltipUtils'
-import { ItemType } from 'storage'
 
 const isBlockStyle = (style: AllowedStyles): style is AllowedBlockStyles => {
   return ['header-one', 'header-two', 'header-three'].includes(style)
@@ -42,7 +41,6 @@ const EditorComponent = ({ handleSave, defaultEditorContent }: Props) => {
     if (!staredEditing) return
 
     const timeout = setTimeout(() => {
-      console.log('editor saving...')
       handleSave({ editorContent: convertToRaw(editorState.getCurrentContent()) })
     }, 1000)
 

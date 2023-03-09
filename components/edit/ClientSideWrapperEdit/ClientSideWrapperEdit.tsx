@@ -7,7 +7,8 @@ import { RawDraftContentState } from 'draft-js'
 import Header from '../Header'
 import Editor from '../Editor'
 
-import { updateItem, ItemType, getItem } from 'storage'
+import { ItemType } from 'types'
+import { updateItem, getItem } from 'storage'
 
 const ClientSideWrapperEdit = () => {
   const searchParams = useSearchParams()

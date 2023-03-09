@@ -1,13 +1,7 @@
 import Stack from './Stack'
 import { Meta, StoryObj } from '@storybook/react'
 
-const generateItems = (amount: number): Array<{ id: string; title: string }> => {
-  const arr = Array.from(Array(amount))
-  return arr.map((number, i) => ({
-    id: `${i}rt`,
-    title: `Title ${i + 1}`,
-  }))
-}
+import { generateItems } from 'utils'
 
 const meta: Meta<typeof Stack> = {
   title: 'Dashboard/Stack',

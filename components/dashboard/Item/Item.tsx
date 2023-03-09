@@ -1,10 +1,8 @@
 import { IoCreateOutline } from 'react-icons/io5'
 import Link from 'next/link'
 
-export type ItemType = {
-  id: string
-  title: string
-}
+import { ItemType } from 'types'
+
 type ItemProps = { item: ItemType }
 
 const DashboardItem = ({ item }: ItemProps) => {

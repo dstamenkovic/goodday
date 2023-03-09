@@ -1,5 +1,7 @@
-import Item, { ItemType } from '../Item'
+import Item from '../Item'
 import Create from '../Create'
+
+import { ItemType } from 'types'
 
 type StackProps = {
   items: ItemType[]
