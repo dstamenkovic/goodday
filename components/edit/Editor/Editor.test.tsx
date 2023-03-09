@@ -6,7 +6,7 @@ import Editor from './Editor'
 
 describe('Editor', () => {
   it('renders the editor/placeholder', () => {
-    render(<Editor />)
+    render(<Editor handleSave={jest.fn()} defaultEditorContent={undefined} />)
 
     const placeholder = `What's on your mind?`
     expect(screen.getByText(placeholder)).toBeTruthy()

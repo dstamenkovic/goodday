@@ -35,6 +35,7 @@ const Tooltip = ({
   return (
     <div
       ref={tooltipRef}
+      data-testid="tooltip"
       className={`invisible fixed top-0 left-0 z-10 flex h-fit w-fit flex-row rounded border border-gray-300 bg-white shadow-sm ${
         showTooltip ? '!visible' : ''
       }`}

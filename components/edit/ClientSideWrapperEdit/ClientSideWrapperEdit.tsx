@@ -14,7 +14,7 @@ const ClientSideWrapperEdit = () => {
   const id = searchParams?.get('id')
 
   const [title, setTitle] = useState<string>('')
-  const [editorContent, setEditorContent] = useState<RawDraftContentState | null>(null)
+  const [editorContent, setEditorContent] = useState<RawDraftContentState | undefined>()
 
   useEffect(() => {
     if (!id) return

@@ -20,7 +20,7 @@ const isBlockStyle = (style: AllowedStyles): style is AllowedBlockStyles => {
 
 type Props = {
   handleSave: ({ editorContent }: { editorContent: RawDraftContentState }) => Promise<void>
-  defaultEditorContent: RawDraftContentState | null
+  defaultEditorContent: RawDraftContentState | undefined
 }
 
 const EditorComponent = ({ handleSave, defaultEditorContent }: Props) => {
