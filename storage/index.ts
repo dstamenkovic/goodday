@@ -1,4 +1,4 @@
-import { EditorState, convertToRaw, RawDraftContentState } from 'draft-js'
+import { EditorState, convertToRaw } from 'draft-js'
 import localforage from 'localforage'
 
 import { ItemType } from 'types/Item'
