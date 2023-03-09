@@ -4,11 +4,12 @@ import Link from 'next/link'
 
 type Props = {
   handleSave: ({ title }: { title: string }) => void
-  defaultTitle: string
+  defaultTitle?: string
 }
 
 const Header = ({ handleSave, defaultTitle }: Props) => {
   const [inputVal, setInputVal] = useState<string>('')
+  const [inputFocused, setInputFocused] = useState<boolean>(false)
   const inputRef = useRef<HTMLInputElement>(null)
 
   useEffect(() => {
@@ -16,15 +17,14 @@ const Header = ({ handleSave, defaultTitle }: Props) => {
   }, [defaultTitle])
 
   useEffect(() => {
-    if (document.activeElement !== inputRef.current) return
+    if (!inputFocused) return
 
     const timeout = setTimeout(() => {
-      console.log('save title')
       handleSave({ title: inputVal })
     }, 1000)
 
     return () => clearTimeout(timeout)
-  }, [inputVal, handleSave])
+  }, [inputVal, handleSave, inputFocused])
 
   return (
     <div className="flex flex-row place-items-center justify-start gap-6 pb-4">
@@ -40,6 +40,8 @@ const Header = ({ handleSave, defaultTitle }: Props) => {
         className="w-full text-3xl outline-none"
         value={inputVal}
         onChange={e => setInputVal(e.target.value)}
+        onFocus={() => setInputFocused(true)}
+        onBlur={() => setInputFocused(false)}
       />
     </div>
   )
