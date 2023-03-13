@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
 
-import { getItems, createItem } from 'storage'
+import { getItems, createItem, deleteItem } from 'storage'
 import Stack from '../Stack'
 import { ItemType } from 'types'
 
@@ -25,9 +25,15 @@ export default function ClientSideWrapperDash() {
     router.push(`/edit?id=${id}`)
   }
 
+  const onDeleteHandler = async (id: string): Promise<void> => {
+    await deleteItem(id)
+    const itemsFromStorage = await getItems()
+    setItems(itemsFromStorage)
+  }
+
   return (
     <>
-      <Stack items={items} onCreate={onCreateHandler} />
+      <Stack items={items} onCreate={onCreateHandler} onDelete={onDeleteHandler} />
     </>
   )
 }

@@ -6,7 +6,7 @@ type Props = {
 
 const Create = ({ onClickHandler }: Props) => {
   return (
-    <div className="item justify-center" onClick={onClickHandler}>
+    <div className="item cursor-pointer justify-center" onClick={onClickHandler}>
       <IoAddOutline size={45} title="Create" />
     </div>
   )
