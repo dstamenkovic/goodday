@@ -11,7 +11,7 @@ type NavLink = {
 
 const links: NavLink[] = [
   { title: 'home', urlKey: 'dashboard', icon: IoHomeOutline },
-  { title: 'settings', urlKey: 'settings', icon: IoSettingsOutline },
+  // { title: 'settings', urlKey: 'settings', icon: IoSettingsOutline },
 ]
 
 const Navigation = () => {

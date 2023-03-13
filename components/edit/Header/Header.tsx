@@ -20,7 +20,6 @@ const Header = ({ handleSave, defaultTitle }: Props) => {
     if (!inputActived) return
 
     const timeout = setTimeout(() => {
-      console.log('saving...')
       handleSave({ title: inputVal })
     }, 1000)
 

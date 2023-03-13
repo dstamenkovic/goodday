@@ -42,7 +42,7 @@ const ClientSideWrapperEdit = () => {
     <>
       <>
         <Header defaultTitle={title} handleSave={handleSave} />
-        <div className="mt-4 pl-2">
+        <div className="mt-4 py-10 px-14">
           <Editor defaultEditorContent={editorContent} handleSave={handleSave} />
         </div>
       </>
