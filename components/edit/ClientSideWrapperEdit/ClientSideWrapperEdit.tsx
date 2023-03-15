@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect, useState, useCallback } from 'react'
-import { useSearchParams } from 'next/navigation'
+import { useSearchParams, useRouter } from 'next/navigation'
 import { RawDraftContentState } from 'draft-js'
 
 import Header from '../Header'
@@ -13,6 +13,13 @@ import { updateItem, getItem } from 'storage'
 const ClientSideWrapperEdit = () => {
   const searchParams = useSearchParams()
   const id = searchParams?.get('id')
+  const router = useRouter()
+
+  useEffect(() => {
+    if (!id) {
+      router.push('/dashboard')
+    }
+  }, [id, router])
 
   const [title, setTitle] = useState<string>('')
   const [editorContent, setEditorContent] = useState<RawDraftContentState | undefined>()
