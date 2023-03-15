@@ -40,18 +40,7 @@ const Navigation = () => {
         <li className="p-6 py-4 text-gray-500">
           All the data is saved only in the browser using the IndexedDB.
         </li>
-        <li className="p-6 py-4 text-gray-500">
-          Built while playing around with Next.js 13 (following the{' '}
-          <a
-            href="https://beta.nextjs.org/docs"
-            target="_blank"
-            rel="noreferrer"
-            className="text-blue-400"
-          >
-            beta docs
-          </a>
-          ).
-        </li>
+        <li className="p-6 py-4 text-gray-500">Built while playing around with Next.js 13.</li>
         <li className="p-6 py-4 text-blue-400">
           <a href="https://github.com/dstamenkovic/goodday" target="_blank" rel="noreferrer">
             GitHub repository
