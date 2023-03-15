@@ -1,7 +1,7 @@
 import Link from 'next/link'
 
 import { IconType } from 'react-icons'
-import { IoHomeOutline, IoSettingsOutline } from 'react-icons/io5'
+import { IoHomeOutline } from 'react-icons/io5'
 
 type NavLink = {
   title: string
@@ -34,6 +34,29 @@ const Navigation = () => {
             </li>
           )
         })}
+        <li className="p-6 py-4 text-gray-500">
+          This is a simple text editor. You can create, edit and delete notes.
+        </li>
+        <li className="p-6 py-4 text-gray-500">
+          All the data is saved only in the browser using the IndexedDB.
+        </li>
+        <li className="p-6 py-4 text-gray-500">
+          Built while playing around with Next.js 13 (following the{' '}
+          <a
+            href="https://beta.nextjs.org/docs"
+            target="_blank"
+            rel="noreferrer"
+            className="text-blue-400"
+          >
+            beta docs
+          </a>
+          ).
+        </li>
+        <li className="p-6 py-4 text-blue-400">
+          <a href="https://github.com/dstamenkovic/goodday" target="_blank" rel="noreferrer">
+            GitHub repository
+          </a>
+        </li>
       </ul>
     </div>
   )
