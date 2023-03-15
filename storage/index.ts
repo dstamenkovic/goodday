@@ -4,7 +4,7 @@ import localforage from 'localforage'
 import { ItemType } from 'types/Item'
 
 let store: LocalForage = localforage.createInstance({
-  name: 'doamm',
+  name: 'doam',
 })
 
 export const getItems = async (): Promise<Array<ItemType>> => {
