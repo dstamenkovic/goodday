@@ -13,7 +13,7 @@ const DashboardItem = ({ item, deleteHandler }: ItemProps) => {
         onClick={() => deleteHandler(item.id)}
         aria-label="Delete"
       >
-        <IoTrashOutline size={27} className="stroke-red-500" />
+        <IoTrashOutline size={27} className="stroke-red-300" />
       </button>
       <h3 className="w-full truncate pb-4">{item.title || 'No title'}</h3>
       <Link href={`/edit?id=${item.id}`}>
